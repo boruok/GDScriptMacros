@@ -23,13 +23,13 @@ func check_macro(line: int) -> void:
 	if macroStr.has(keyword):
 		# the number of arguments given must match the number of arguments as written inside macros.txt
 		if givenArgs.size() != macroArgs[keyword].size(): return
-		# negin construction of a new line
+		# begin construction of a new line
 		var constructLine = writtenLine
 		var indent = get_indentation(writtenLine)
 		constructLine = indent + macroStr[keyword]
-		# Apply indentation to each line in the macro result
+		# apply indentation to each line in the macro result
 		constructLine = constructLine.replace('\n', '\n' + indent)
-		# Arguments
+		# arguments
 		if macroArgs.has(keyword):
 			for i in givenArgs.size():
 				constructLine = constructLine.replace(macroArgs[keyword][i], givenArgs[i])
@@ -61,7 +61,7 @@ func _init_macro_file() -> void:
 	while true:
 		var line := file.get_line()
 		if line.begins_with("[macro]"):
-			# trim the previous entry's final "\n", just to remove an unncessary extra line.
+			# trim the previous entry's final "\n", just to remove an unncessary extra line
 			if keyword:
 				macroStr[keyword] = macroStr[keyword].trim_suffix("\n")
 			# new keyword
